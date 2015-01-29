@@ -40,6 +40,8 @@ $this->options['routes'][] = array(
 	'action'  => function($path = null) {
 		if(!$instagram->is_installed()){
 
+			f::save(__DIR__.'/cache/latest.json', $_POST);
+
 		} else {
 			die('hurr durr nerr');
 		}

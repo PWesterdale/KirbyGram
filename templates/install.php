@@ -5,7 +5,9 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
         <title>KirbyGram Install</title>
+
         <link rel="stylesheet" href="/assets/css/main.css">
+        
         <style>
         	.btn {
         		background: #222;
