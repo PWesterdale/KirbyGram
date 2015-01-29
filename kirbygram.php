@@ -37,7 +37,7 @@ $this->options['routes'][] = array(
 $this->options['routes'][] = array(
 	'pattern' => 'kirbygram/complete',
 	'method'  => 'POST',
-	'action'  => function($path = null) {
+	'action'  => function($path = null) use($instagram) {
 		if(!$instagram->is_installed()){
 
 			//write to cache
