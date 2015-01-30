@@ -41,7 +41,12 @@ $this->options['routes'][] = array(
 		if(!$instagram->is_installed()){
 
 			//write to cache
-			f::write(__DIR__.'/cache/latest.json', $_POST);
+			$data = $_POST;
+			$data['referrer'] = r::referer();
+
+			f::write(__DIR__.'/cache/latest.json', $data);
+
+			exit;
 
 		} else {
 			die('hurr durr nerr');
