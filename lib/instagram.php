@@ -43,15 +43,15 @@ class Instagram {
 
 	public function load_config(){
 
-		$result = \f::load(__DIR__ . '../../config.txt');
+		$result = \f::read(__DIR__ . '/../config.json', 'json');
 
-		$this->set_config($result ? $result : []);
+		$this->set_config($result ? json_decode($result) : []);
 
 		return $this->get_config();
 	}
 
 	public function save_config(){
-		return \f::write(__DIR__ . '../../config.txt', $this->_config);
+		return \f::write(__DIR__ . '/../config.json', json_encode($this->_config));
 	}
 
 
