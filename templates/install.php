@@ -7,7 +7,7 @@
         <title>KirbyGram Install</title>
 
         <link rel="stylesheet" href="/assets/css/main.css">
-        
+
         <style>
         	.btn {
         		background: #222;
@@ -38,6 +38,6 @@
 		</p>
 		<br />
 		<h3>I get it! Let's go!</h3>
-		<a class="btn" href="http://kirbygram.threadstud.io/auth.php?origin=<?= server::get('HTTP_HOST') ?>">Authorize</a>
+		<a class="btn" href="http://kirbygram.threadstud.io/auth.php?origin=<?= server::get('HTTP_HOST') ?>&kgt=<?= $instagram->getCSRF() ?>">Authorize</a>
 	</body>
 </html>

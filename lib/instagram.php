@@ -7,19 +7,16 @@ class Instagram {
 	protected $_config = [];
 
 	function __construct() {
-		$this->load_config();	
-	}
 
-	public function load_config(){
+		$config = $this->load_config();	
 
-		$filename = __DIR__ . '../../config/details.txt';
-
-		if(\f::exists($filename)){
-			$this->set_config(['installed' => true]);
-		} else {
-			$this->set_config(['installed' => false]);
+		if(!$config){
+			$this->set_config([
+				'installed' => false,
+				'csrf' => uniqid();
+			]);
+			$this->save_config();
 		}
-
 	}
 
 	public function is_installed(){
@@ -33,7 +30,22 @@ class Instagram {
 	}
 
 	public function get_config($key){
-		return $this->_config[$key];
+		if($key){
+			return $this->_config[$key];
+		} else {
+			return $this->_config;
+		}
+	}
+
+	public function load_config(){
+		$result = f::load(__DIR__ . '../../config.txt');
+		$this->set_config($result);
+
+		return $this->get_config();
+	}
+
+	public function save_config(){
+		return f::write(__DIR__ . '../../config.txt', $this->_config);
 	}
 
 
