@@ -44,10 +44,14 @@ $this->options['routes'][] = array(
 			$data = $_POST;
 
 			if($data['kgt'] == $instagram->get_config('csrf')){
+
 				$instagram->set_config([
 					'token' => $data['token'],
 					'user' => $data['user']
 				]);
+				
+				$instagram->save_config();
+
 			}
 
 			exit;

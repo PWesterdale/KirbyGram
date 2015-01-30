@@ -23,7 +23,7 @@ class Instagram {
 		return $this->get_config('installed');
 	}
 
-	protected function set_config($options){
+	public function set_config($options){
 		if(!$options){
 			return false;
 		}
