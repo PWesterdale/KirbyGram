@@ -15,7 +15,7 @@ $this->options['routes'][] = array(
 
 		if(!$instagram->is_installed()){
 
-			return f::load(__DIR__.'/templates/install.php');
+			return f::load(__DIR__.'/templates/install.php', ['instagram' => $instagram]);
 			
 		} else {
 			die('hurr durr nerr');
@@ -42,9 +42,13 @@ $this->options['routes'][] = array(
 
 			//write to cache
 			$data = $_POST;
-			$data['referrer'] = r::referer();
 
-			f::write(__DIR__.'/cache/latest.json', $data);
+			if($data['kgt'] == $instagram->get_config('csrf')){
+				$instagram->set_config([
+					'token' => $data['token'],
+					'user' => $data['user']
+				]);
+			}
 
 			exit;
 

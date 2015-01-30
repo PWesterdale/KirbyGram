@@ -38,6 +38,6 @@
 		</p>
 		<br />
 		<h3>I get it! Let's go!</h3>
-		<a class="btn" href="http://kirbygram.threadstud.io/auth.php?origin=<?= server::get('HTTP_HOST') ?>&kgt=<?= $instagram->getCSRF() ?>">Authorize</a>
+		<a class="btn" href="http://kirbygram.threadstud.io/auth.php?origin=<?= server::get('HTTP_HOST') ?>&kgt=<?= $instagram->get_config('csrf') ?>">Authorize</a>
 	</body>
 </html>

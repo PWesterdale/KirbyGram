@@ -13,7 +13,7 @@ class Instagram {
 		if(!$config){
 			$this->set_config([
 				'installed' => false,
-				'csrf' => uniqid();
+				'csrf' => uniqid()
 			]);
 			$this->save_config();
 		}
@@ -24,12 +24,16 @@ class Instagram {
 	}
 
 	protected function set_config($options){
+		if(!$options){
+			return false;
+		}
+
 		foreach($options as $key => $val){
 			$this->_config[$key] = $val;
 		}
 	}
 
-	public function get_config($key){
+	public function get_config($key = false){
 		if($key){
 			return $this->_config[$key];
 		} else {
@@ -38,14 +42,16 @@ class Instagram {
 	}
 
 	public function load_config(){
-		$result = f::load(__DIR__ . '../../config.txt');
-		$this->set_config($result);
+
+		$result = \f::load(__DIR__ . '../../config.txt');
+
+		$this->set_config($result ? $result : []);
 
 		return $this->get_config();
 	}
 
 	public function save_config(){
-		return f::write(__DIR__ . '../../config.txt', $this->_config);
+		return \f::write(__DIR__ . '../../config.txt', $this->_config);
 	}
 
 
