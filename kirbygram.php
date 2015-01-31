@@ -1,26 +1,8 @@
 <?php
-	
-if(!class_exists('Instagram')){
-	require_once('lib/instagram.php');
-}
-if(!class_exists('\Instagram\MediaResponse')){
-	require_once('lib/media_response.php');
-}
-if(!class_exists('\Instagram\Feed')){
-	require_once('lib/feed.php');
-}
-if(!class_exists('\Instagram\Liked')){
-	require_once('lib/liked.php');
-}
-if(!class_exists('\Instagram\Media')){
-	require_once('lib/media.php');
-}
-if(!class_exists('\Instagram\Remote')){
-	require_once('lib/remote.php');
-}
-if(!class_exists('\Instagram\Url')){
-	require_once('lib/url.php');
-}
+
+spl_autoload_register(function ($class) {
+    include 'lib/' . str_replace('\\', '/', $class) . '.php';
+});
 
 
 $instagram = new Instagram();
