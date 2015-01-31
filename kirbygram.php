@@ -14,12 +14,10 @@ $this->options['routes'][] = array(
 	'action'  => function($path = null) use($instagram, $kirby) {
 
 		if(!$instagram->is_installed()){
-
 			return f::load(__DIR__.'/templates/install.php', ['instagram' => $instagram]);
-			
-		} else {
-			die('hurr durr nerr');
 		}
+
+		return false;
 
 	}
 );
@@ -63,9 +61,9 @@ $this->options['routes'][] = array(
 
 			exit;
 
-		} else {
-			die('hurr durr nerr');
 		}
+
+		return false;
 
 	}
 );

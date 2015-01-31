@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-        <title>KirbyGram Install - Done!</title>
+        <title>KirbyGram Done!</title>
 
         <link rel="stylesheet" href="/assets/css/main.css">
 
