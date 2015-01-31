@@ -69,7 +69,9 @@ class Instagram {
 
 	public function set_cache($type, $result){
 		$cache_path = __DIR__ . '/../cache/' . $type . '.json';
-		$cache = ['to' => strtotime('+1 hour'), 'payload' => $result];
+
+		$period = c::get('kg.cache_period') ? c::get('kg.cache_period') : '30 Minutes';
+		$cache = ['to' => strtotime($period), 'payload' => $result];
 		\f::write($cache_path, json_encode($cache));
 	}
 

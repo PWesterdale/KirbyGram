@@ -19,7 +19,6 @@
         		background: red;
         		color: #fff;
         	}
-
             div.code {
                 font-size: 14px;
                 background: #FDFDFD;
@@ -27,16 +26,13 @@
                 margin: 0 !important;
                 padding: 6px 10px !important;
             }
-
             code {
                 margin: 0;
                 padding: 0;
             }
-
             ul {
                 list-style-type: none;
             }
-
             ul li {
                 display: inline-block;
             }
