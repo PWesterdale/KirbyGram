@@ -32,7 +32,7 @@ abstract class MediaResponse {
 
 	function get(){
 
-		$images = [];
+		$images = array();
 
 		if($this->_only){
 			$this->_data = array_filter($this->_data, function($media) {
