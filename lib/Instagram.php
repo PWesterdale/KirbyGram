@@ -78,7 +78,7 @@ class Instagram {
 	public function feed(){
 		$feed = $this->check_cache('feed');
 		if(!$feed){
-			$feed = \Instagram\Remote::get('https://api.instagram.com/v1/users/self/feed', [
+			$feed = \Instagram\Remote::get('https://api.instagram.com/v1/users/' . $this->get_config('uid') . '/media/recent', [
 				'data' => [
 					'access_token' => $this->get_config('token')
 				]
