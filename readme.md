@@ -1,6 +1,15 @@
 ## Kirby Instagram Plugin
 
 ---
+### Breaking Changes - Please upgrade to v1.1.0!
+---
+
+Thanks to Tony Morris for bringing this to my attention - I was utilising the wrong end point for a users feed, so had to make several changes to fix the feed endpoint.
+If you are running a version earlier that v1.1.0 then please, update your installation with the new files and run through the authorization process once more.
+
+Apologies for any inconvenience!
+
+---
 ### What does it do?
 ---
 
@@ -67,11 +76,11 @@ Each of the above methods returns you an array of media objects, unless you set 
 
 The Media Object exposes the following functions:
 
-##### caption()
+#### caption()
 
 Gets the caption of the Instagram post. for best results pass this through the **instagram::format_text()** function
 
-##### likes()
+#### likes()
 
 Returns the amount of likes for the current object.
 
