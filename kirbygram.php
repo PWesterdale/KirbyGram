@@ -51,7 +51,8 @@ $this->options['routes'][] = array(
 					$instagram->set_config([
 						'token' => $data['token'],
 						'user' => $data['user'],
-						'installed' => true
+						'uid' => $data['uid'],
+ 						'installed' => true
 					]);
 				}
 
