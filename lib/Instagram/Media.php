@@ -54,4 +54,8 @@ class Media {
 		return ($this->_raw->type == 'image');
 	}
 
+	function link(){
+		return $this->_raw->link;
+	}
+
 }
