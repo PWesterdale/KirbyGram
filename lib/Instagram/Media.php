@@ -15,7 +15,7 @@ class Media {
 	}
 
 	function likes(){
-		return count($this->_raw->likes);
+		return $this->_raw->likes->count;
 	}
 
 	function tags(){
