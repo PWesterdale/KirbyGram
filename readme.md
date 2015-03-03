@@ -84,6 +84,10 @@ Gets the caption of the Instagram post. for best results pass this through the *
 
 Returns the amount of likes for the current object.
 
+#### link()
+
+The url of the current object on instagram.com
+
 #### tags()
 
 Returns an array of tags for the current object.
