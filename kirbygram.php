@@ -14,7 +14,7 @@ $this->options['routes'][] = array(
 	'action'  => function($path = null) use($instagram, $kirby) {
 
 		if(!$instagram->is_installed()){
-			return f::load(__DIR__.'/templates/install.php', ['instagram' => $instagram]);
+			return f::load(__DIR__.'/templates/install.php', array('instagram' => $instagram));
 		}
 
 		return false;
@@ -28,9 +28,9 @@ $this->options['routes'][] = array(
 	'action'  => function($path = null) use($instagram) {
 
 		if($instagram->is_installed()){
-			return f::load(__DIR__.'/templates/complete.php', ['instagram' => $instagram]);
+			return f::load(__DIR__.'/templates/complete.php', array('instagram' => $instagram));
 		} else {
-			return f::load(__DIR__.'/templates/error.php', ['instagram' => $instagram]);
+			return f::load(__DIR__.'/templates/error.php', array('instagram' => $instagram));
 		}
 
 	}
@@ -48,12 +48,12 @@ $this->options['routes'][] = array(
 			if($data['kgt'] == $instagram->get_config('csrf')){
 
 				if($data['token'] && $data['user']){
-					$instagram->set_config([
+					$instagram->set_config(array(
 						'token' => $data['token'],
 						'user' => $data['user'],
 						'uid' => $data['uid'],
  						'installed' => true
-					]);
+					));
 				}
 
 				$instagram->save_config();

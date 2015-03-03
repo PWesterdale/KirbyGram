@@ -4,7 +4,7 @@ namespace Instagram;
 
 abstract class MediaResponse {
 
-	protected $_data = [];
+	protected $_data = array();
 	protected $_limit = false;
 	protected $_offset = 0;
 	protected $_only = false;
@@ -32,7 +32,7 @@ abstract class MediaResponse {
 
 	function get(){
 
-		$images = [];
+		$images = array();
 
 		if($this->_only){
 			$this->_data = array_filter($this->_data, function($media) {
