@@ -43,7 +43,7 @@ class Instagram {
 
 		$result = \f::read(__DIR__ . '/../config.json', 'json');
 
-		$this->set_config($result ? json_decode($result) : []);
+		$this->set_config($result ? json_decode($result) : array());
 
 		return $this->get_config();
 	}
