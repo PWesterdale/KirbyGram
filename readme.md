@@ -49,6 +49,8 @@ These are the two basic feeds represented by this plugin, Feed is the complete u
 to query these feeds, you can use the following:
 
 ```
+$instagram = new \Instagram();
+
 // Get all of the images/videos from my feed!
 $instagram->feed()->get();
 
@@ -60,6 +62,8 @@ $instagram->liked()->get();
 That is all well and good, but you may probably want a little more control than that. Therefore you can use the following methods to limit and offset the results you are getting.
 
 ```
+$instagram = new \Instagram();
+
 // Get all of the IMAGES from my feed!
 $instagram->feed()->only('image')->get();
 
