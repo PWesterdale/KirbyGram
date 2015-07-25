@@ -82,7 +82,7 @@ The Media Object exposes the following functions:
 
 #### caption()
 
-Gets the caption of the Instagram post. for best results pass this through the **instagram::format_text()** function
+Gets the caption of the Instagram post. for best results pass this through the **instagram::text_format()** function
 
 #### likes()
 
