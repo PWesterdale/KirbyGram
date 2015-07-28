@@ -4,28 +4,32 @@ namespace Instagram;
 
 abstract class MediaResponse {
 
-	protected $_data = array();
-	protected $_limit = false;
-	protected $_offset = 0;
-	protected $_only = false;
+	protected $data = array();
+	protected $query;
+	protected $images;
+	protected $limit = false;
+	protected $offset = 0;
+	protected $only = false;
 
-	function __construct($feed){
-		$this->_data = $feed;
+	function __construct($query){
+		$this->query = $query;
+		$this->data = $query->get();
+		$this->images = array();
 	}
 
 	function offset($offset){
-		$this->_offset = $offset;
+		$this->offset = $offset;
 		return $this;
 	}
 
 	function limit($limit){
-		$this->_limit = $limit - 1;
+		$this->limit = $limit - 1;
 		return $this;
 	}
 
 	function only($limiter){
 		if($limiter == 'video' || $limiter == 'image'){
-			$this->_only = $limiter;
+			$this->only = $limiter;
 		}
 		return $this;
 	}
@@ -34,43 +38,61 @@ abstract class MediaResponse {
 
 		$images = array();
 		
-		if(!$this->_data){
+		if(!$this->data){
 			return $images;
 		}
 
-		if($this->_only){
-			$this->_data = array_filter($this->_data, function($media) {
-    			return ($media->type == $this->_only);
+		if($this->only){
+			$this->data = array_filter($this->data, function($media) {
+    			return ($media->type == $this->only);
 			});
 
 			// Re-index the array to remove any leftover keys
-			$this->_data = array_values($this->_data);
+			$this->data = array_values($this->data);
 		}
 
-		if($this->_limit !== false){
-			if($this->_limit == 0){
-				return new Media($this->_data[0]);
+		if($this->limit !== false){
+			if($this->limit == 0){
+				return new Media($this->data[0]);
 			} else {
-				for($x = $this->_offset; $x <= $this->_limit; $x++){
-					if(isset($this->_data[$x])){
-						$images[] = new Media($this->_data[$x]);
+				for($x = $this->offset; $x <= $this->limit; $x++){
+					if(isset($this->data[$x])){
+						$this->images[] = new Media($this->data[$x]);
 					} else {
 						break;
 					}
 				}
 			}
-		} elseif($this->_offset){
-			$images = array_walk($this->_data, function($media){
-				return new Media($media);
-			});
-			$images = array_splice($images, 0, $this->_offset);
+		} elseif($this->offset){
+
+			foreach($this->data as $media){
+				$images[] = new Media($media);
+			}
+
+			$this->images = array_splice($images, $this->offset);
+
 		} else {
-			$images = array_walk($this->_data, function($media){
-				return new Media($media);
-			});
+
+			$images = array();
+
+			foreach($this->data as $media){
+				$this->images[] = new Media($media);
+			}
+
+			count($this->images);
+			//var_dump($images);
+
 		}
 
-		return $images;
+		while((count($this->images) < $this->limit) && $this->query->getNext()){
+			$this->data = $this->query->getData();
+			$this->get();
+			if(count($this->images) > $this->limit){
+				array_splice($this->images, ($this->limit + 1));
+			}
+		}
+
+		return $this->images;
 
 	}
 

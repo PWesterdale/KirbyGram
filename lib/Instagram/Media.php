@@ -22,6 +22,10 @@ class Media {
 		return $this->_raw->tags;
 	}
 
+	function created(){
+		return (new DateTime())->setTimestamp($this->_raw->created_time);
+	}
+
 	function raw(){
 		return $this->_raw;
 	}

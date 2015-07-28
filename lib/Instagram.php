@@ -76,18 +76,10 @@ class Instagram {
 	}
 
 	public function feed(){
-		$feed = $this->check_cache('feed');
-		if(!$feed){
 
-			$feed = \Instagram\Remote::get('https://api.instagram.com/v1/users/' . $this->get_config('uid') . '/media/recent', array(
-				'data' => array(
-					'access_token' => $this->get_config('token')
-				)
-			));
-			$this->set_cache('feed', $feed->content);
-			$feed = $feed->content;
-		}
-		return new \Instagram\Feed(json_decode($feed)->data);
+		$query = new \Instagram\Query('feed', '/users/' . $this->get_config('uid') . '/media/recent', $this);
+		return new \Instagram\Feed($query);
+
 	}
 
 	public function liked(){
