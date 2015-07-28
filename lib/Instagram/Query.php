@@ -35,7 +35,7 @@ class Query {
 
 		//echo '<pre>' . json_encode($this->response->content, JSON_PRETTY_PRINT) . '</pre>';
 		
-		//$this->igInstance->set_cache($this->name, $this->response);
+		$this->igInstance->set_cache($this->name, $this->response);
 		
 		$this->parsePagination();
 		return $this->content->data;
