@@ -1,7 +1,10 @@
 <?php
 
 spl_autoload_register(function ($class) {
-    include 'lib/' . str_replace('\\', '/', $class) . '.php';
+	$file = __DIR__ . '/lib/' . str_replace('\\', '/', $class) . '.php';
+	if (file_exists($file)) {
+		include 'lib/' . str_replace('\\', '/', $class) . '.php';
+	}
 });
 
 
